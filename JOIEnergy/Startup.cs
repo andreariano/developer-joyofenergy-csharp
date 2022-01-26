@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using JOIEnergy.Domain;
 using JOIEnergy.Enums;
 using JOIEnergy.Generator;
@@ -10,12 +9,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace JOIEnergy
 {
-    public class Startup
+  public class Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -48,7 +45,7 @@ namespace JOIEnergy
                 }
             };
 
-            services.AddMvc();
+            services.AddControllers();
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IMeterReadingService, MeterReadingService>();
             services.AddTransient<IPricePlanService, PricePlanService>();
@@ -65,7 +62,11 @@ namespace JOIEnergy
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseRouting();
+            app.UseEndpoints(endpoints => 
+            {
+                endpoints.MapControllers();
+            });
         }
 
         private Dictionary<string, List<ElectricityReading>> GenerateMeterElectricityReadings() {

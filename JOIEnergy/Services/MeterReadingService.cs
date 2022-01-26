@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using JOIEnergy.Domain;
 
 namespace JOIEnergy.Services
 {
-    public class MeterReadingService : IMeterReadingService
+  public class MeterReadingService : IMeterReadingService
     {
         public Dictionary<string, List<ElectricityReading>> MeterAssociatedReadings { get; set; }
         public MeterReadingService(Dictionary<string, List<ElectricityReading>> meterAssociatedReadings)

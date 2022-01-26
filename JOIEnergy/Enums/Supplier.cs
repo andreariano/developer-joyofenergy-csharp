@@ -1,7 +1,6 @@
-﻿using System;
-namespace JOIEnergy.Enums
+﻿namespace JOIEnergy.Enums
 {
-    public enum Supplier
+  public enum Supplier
     {
         DrEvilsDarkEnergy,
         TheGreenEco,

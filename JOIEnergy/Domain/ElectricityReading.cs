@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace JOIEnergy.Domain
 {
     public class ElectricityReading
