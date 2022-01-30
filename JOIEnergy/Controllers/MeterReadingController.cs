@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JOIEnergy.Controllers
 {
-  [Route("readings")]
+    [Route("readings")]
     public class MeterReadingController : Controller
     {
         private readonly IMeterReadingService _meterReadingService;
@@ -29,7 +29,7 @@ namespace JOIEnergy.Controllers
             return new OkObjectResult("{}");
         }
 
-        private bool IsMeterReadingsValid(MeterReadings meterReadings)
+        private static bool IsMeterReadingsValid(MeterReadings meterReadings)
         {
             String smartMeterId = meterReadings.SmartMeterId;
             List<ElectricityReading> electricityReadings = meterReadings.ElectricityReadings;

@@ -7,7 +7,7 @@ namespace JOIEnergy.Services
 {
     public class PricePlanService : IPricePlanService
     {
-        public interface Debug { void Log(string s); };
+        public interface IDebug { void Log(string s); };
 
         private readonly List<PricePlan> _pricePlans;
         private IMeterReadingService _meterReadingService;
