@@ -18,21 +18,21 @@ namespace JOIEnergy.Services
             _meterReadingService = meterReadingService;
         }
 
-        private decimal calculateAverageReading(List<ElectricityReading> electricityReadings)
+        private static decimal calculateAverageReading(List<ElectricityReading> electricityReadings)
         {
             var newSummedReadings = electricityReadings.Select(readings => readings.Reading).Aggregate((reading, accumulator) => reading + accumulator);
 
-            return newSummedReadings / electricityReadings.Count();
+            return newSummedReadings / electricityReadings.Count;
         }
 
-        private decimal calculateTimeElapsed(List<ElectricityReading> electricityReadings)
+        private static decimal calculateTimeElapsed(List<ElectricityReading> electricityReadings)
         {
             var first = electricityReadings.Min(reading => reading.Time);
             var last = electricityReadings.Max(reading => reading.Time);
 
             return (decimal)(last - first).TotalHours;
         }
-        private decimal calculateCost(List<ElectricityReading> electricityReadings, PricePlan pricePlan)
+        private static decimal calculateCost(List<ElectricityReading> electricityReadings, PricePlan pricePlan)
         {
             var average = calculateAverageReading(electricityReadings);
             var timeElapsed = calculateTimeElapsed(electricityReadings);
