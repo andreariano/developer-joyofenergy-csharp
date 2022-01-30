@@ -7,19 +7,19 @@ using System.Collections.Generic;
 
 namespace JOIEnergy.Tests
 {
-    public class PricePlanServiceTest
+  public class PricePlanServiceTest
+  {
+    private PricePlanService _pricePlanService;
+    private readonly Mock<MeterReadingService> _mockMeterReadingService;
+    private List<PricePlan> _pricePlans;
+
+    public PricePlanServiceTest()
     {
-        private PricePlanService _pricePlanService;
-        private readonly Mock<MeterReadingService> _mockMeterReadingService;
-        private List<PricePlan> _pricePlans;
+      _mockMeterReadingService = new Mock<MeterReadingService>();
+      _pricePlanService = new PricePlanService(_pricePlans, _mockMeterReadingService.Object);
 
-        public PricePlanServiceTest()
-        {
-            _mockMeterReadingService = new Mock<MeterReadingService>();
-            _pricePlanService = new PricePlanService(_pricePlans, _mockMeterReadingService.Object);
-
-            _mockMeterReadingService.Setup(service => service.GetReadings(It.IsAny<string>())).Returns(new List<ElectricityReading>(){new ElectricityReading(),
+      _mockMeterReadingService.Setup(service => service.GetReadings(It.IsAny<string>())).Returns(new List<ElectricityReading>(){new ElectricityReading(),
                 new ElectricityReading()});
-        }
     }
+  }
 }
