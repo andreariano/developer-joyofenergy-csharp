@@ -18,6 +18,9 @@ namespace JOIEnergy.Services
             return new List<ElectricityReading>();
         }
 
+        // FIXME: Even though the data is being saved in-memory, I suggest we create an "infrastructure" layer to handle the persistence
+        // That way we can switch the store and we'd keep the business layer intact, and the business layer has no implementation of 
+        // how it's going to handle persistence
         public void StoreReadings(string smartMeterId, List<ElectricityReading> electricityReadings) {
             if (!MeterAssociatedReadings.ContainsKey(smartMeterId)) {
                 MeterAssociatedReadings.Add(smartMeterId, new List<ElectricityReading>());

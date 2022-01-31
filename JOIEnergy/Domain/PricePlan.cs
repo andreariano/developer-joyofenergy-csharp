@@ -11,6 +11,8 @@ namespace JOIEnergy.Domain
         public decimal UnitRate { get; set; }
         public IList<PeakTimeMultiplier> PeakTimeMultiplier { get; set; }
 
+        // FIXME: This solution is not following a DDD pattern but rather a "business layer" pattern, so I'd say we could move this to 
+        // PricePlanService.cs and make this model anemic
         public decimal GetPrice(DateTime datetime)
         {
             var multiplier = PeakTimeMultiplier.FirstOrDefault(m => m.DayOfWeek == datetime.DayOfWeek);

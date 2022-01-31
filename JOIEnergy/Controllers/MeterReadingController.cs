@@ -22,6 +22,8 @@ namespace JOIEnergy.Controllers
         [HttpPost("store")]
         public ObjectResult Post([FromBody] MeterReadings meterReadings)
         {
+            // FIXME: Having this sort of validation at the controller level breaks the SRP as the controller should only be 
+            // dealing with HTTP parsing, and also part of the domain logic is out of the "business layer", breaking cohesion
             if (!IsMeterReadingsValid(meterReadings))
             {
                 return new BadRequestObjectResult("Internal Server Error");

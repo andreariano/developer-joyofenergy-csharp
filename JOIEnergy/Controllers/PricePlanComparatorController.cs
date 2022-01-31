@@ -22,6 +22,9 @@ namespace JOIEnergy.Controllers
         [HttpGet("compare-all/{smartMeterId}")]
         public ObjectResult CalculatedCostForEachPricePlan(string smartMeterId)
         {
+            // FIXME: I suggest we could implement the CQRS pattern here and have this computed before hand, hence 
+            // making it scalable for when we have a large amount of clients, with it being perhaps its own microservice handling the 
+            // "MeterReadingsCreated" integration event
             var pricePlanId = _accountService.GetPricePlanIdForSmartMeterId(smartMeterId);
             var costPerPricePlan = _pricePlanService.GetConsumptionCostOfElectricityReadingsForEachPricePlan(smartMeterId);
             if (!costPerPricePlan.Any())
